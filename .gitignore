@@ -1,0 +1,5 @@
+*.suo
+*.7z
+*.pdb
+*.csproj.user
+old_files
