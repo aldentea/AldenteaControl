@@ -1,0 +1,34 @@
+﻿<Window x:Class="Aldentea.Wpf.Controls.FolderBrowserDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="450" Width="400" xmlns:my="clr-namespace:Aldentea.Wpf.Controls"
+		Title="フォルダを選択" ResizeMode="CanResize" WindowStyle="ToolWindow" 
+		Loaded="Window_Loaded">
+  <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<my:FolderTreeView Margin="12,12,13,12" x:Name="folderTreeView1" Grid.Row="1"
+											 SelectedPath="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=SelectedPath, Mode=TwoWay}"
+											 KeyDown="folderTreeView1_KeyDown"/>
+		<StackPanel Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft">
+			<StackPanel.Resources>
+				<Style TargetType="Button">
+					<Setter Property="Margin" Value="10,3" />
+					<Setter Property="Padding" Value="20,3" />
+				</Style>
+			</StackPanel.Resources>
+			<Button Content="OK" Click="buttonOK_Click"
+					Name="buttonOK" VerticalAlignment="Center" />
+			<Button Content="キャンセル" Click="buttonCancel_Click"
+					Name="buttonCancel" VerticalAlignment="Center" />
+		</StackPanel>
+	  <Button Content="New" Click="buttonNew_Click" Grid.Row="2"
+						IsEnabled="{Binding ElementName=treeView1, Path=selectedPath}"
+						HorizontalAlignment="Left" Margin="10,3" Name="buttonNew" Padding="10,3" VerticalAlignment="Center" />
+		<TextBlock Margin="12,3,12,3" Name="textBlock1" VerticalAlignment="Top" TextWrapping="Wrap"
+							 Grid.Row="0" Text="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Description}" />
+	</Grid>
+</Window>

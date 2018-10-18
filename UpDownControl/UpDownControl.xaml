@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Aldentea.Wpf.Controls.UpDownControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="50" SizeChanged="UserControl_SizeChanged">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="Polygon">
+                <Setter Property="Fill" Value="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Fill}" />
+                <Setter Property="StrokeThickness" Value="0" />
+            </Style>
+        </Grid.Resources>
+        <RepeatButton Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Name="repeatButtonUp" VerticalAlignment="Stretch"
+									SizeChanged="repeatButtonUp_SizeChanged" Click="repeatButtonUp_Click"
+									>
+            <Polygon x:Name="triangleUp">
+                <Polygon.Points>
+                    <Point Y="1" X="11" />
+                    <Point Y="20" X="0" />
+                    <Point Y="20" X="22" />
+                </Polygon.Points>
+            </Polygon>
+        </RepeatButton>
+        <RepeatButton Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Padding="0,0,0,0" Name="repeatButtonDown" VerticalAlignment="Stretch"
+									SizeChanged="repeatButtonDown_SizeChanged" Click="repeatButtonDown_Click">
+            <Polygon x:Name="triangleDown">
+                <Polygon.Points>
+                    <Point Y="20" X="11" />
+                    <Point Y="1" X="22" />
+                    <Point Y="1" X="0" />
+                </Polygon.Points>
+            </Polygon>
+        </RepeatButton>
+
+    </Grid>
+</UserControl>

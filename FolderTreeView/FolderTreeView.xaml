@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Aldentea.Wpf.Controls.FolderTreeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="200">
+    <TreeView HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="treeView1" VerticalAlignment="Stretch"
+                  Loaded="treeView1_Loaded" ItemsSource="{Binding}"
+              SelectedItemChanged="treeView1_SelectedItemChanged">
+<!--  04/15/2011 by aldentea
+			仮想化すると，勝手に項目がExpandされる現象が生じてしまいました．
+			それを解決する手法が見つからなかったので，treeView1の以下のプロパティは設定しないことにしました．
+			Windowsディレクトリを開いたりしなければ，パフォーマンス上の問題も生じないと思います．
+			VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" -->
+			<TreeView.ItemContainerStyle>
+            <Style TargetType="TreeViewItem">
+                <EventSetter Event="Expanded" Handler="treeViewItem_Expanded" />
+                <EventSetter Event="Collapsed" Handler="treeViewItem_Collapsed" />
+                <EventSetter Event="Selected" Handler="treeViewItem_Selected" />
+            </Style>
+        </TreeView.ItemContainerStyle>
+        <TreeView.ItemTemplate>
+            <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                <StackPanel Orientation="Horizontal"
+                            >
+                    <Image Width="16" Height="16" Source="{Binding Path=Icon}" />
+                    <TextBlock Margin="4,0,0,0" Text="{Binding Path=Name}" />
+                </StackPanel>
+            </HierarchicalDataTemplate>
+        </TreeView.ItemTemplate>
+    </TreeView>
+</UserControl>

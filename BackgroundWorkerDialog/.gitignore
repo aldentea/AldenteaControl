@@ -1,4 +1,5 @@
 bin/Debug
 bin/x64
 bin/x86
+bin/Release
 obj
